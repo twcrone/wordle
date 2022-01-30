@@ -1,9 +1,21 @@
 import sys
 
+
+def findAllMatches(word):
+    Matches = []
+    wordFile = open("words.txt", "r")
+    Lines = wordFile.readlines()
+    for line in Lines:
+        if matches(word, line):
+            Matches.append(line)
+    return Matches
+
+
+def matches(word, other):
+    return word == other
+
+
 if __name__ == "__main__":
-    word = "COULD" if len(sys.argv) < 2 else sys.argv[1]
-    print(word)
-    # wordFile = open("words.txt", "r")
-    # Lines = wordFile.readlines()
-    # for line in Lines:
-    #     print(line)
+    arg = "could" if len(sys.argv) < 2 else sys.argv[1]
+    print(arg)
+    findAllMatches(arg)
