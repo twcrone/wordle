@@ -1,8 +1,8 @@
 import sys
 
 
-def find_best_option(pattern):
-    best_word = ""
+def find_best_options(pattern):
+    best_options = []
     best_score = 0
     word_file = open("words.txt", "r")
     lines = word_file.readlines()
@@ -10,10 +10,12 @@ def find_best_option(pattern):
         line = line.strip()
         line_score = score(line, pattern)
         # print(line + " (" + str(line_score) + ")")
-        if line_score > best_score:
+        if line_score == best_score:
+            best_options.append(line)
+        elif line_score > best_score:
+            best_options = [line]
             best_score = line_score
-            best_word = line
-    return best_word + " (" + str(best_score) + ")"
+    return best_options
 
 
 def score(word, pattern):
@@ -34,4 +36,4 @@ def score(word, pattern):
 if __name__ == "__main__":
     arg = "COULD" if len(sys.argv) < 2 else sys.argv[1]
     print(arg)
-    print(find_best_option(arg))
+    print(find_best_options(arg))
