@@ -26,6 +26,9 @@ class TestWordle(unittest.TestCase):
     def test_zero_when_any_excludes_many(self):
         self.assertEqual(0, score("there", "___r_", "acidthe"))
 
+    def test_lowercase_match_in_uppercase_location_is_zero(self):
+        self.assertEqual(0, score("and", "a__", ""))
+
 
 if __name__ == '__main__':
     unittest.main()
