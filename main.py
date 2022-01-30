@@ -2,7 +2,7 @@ import random
 import sys
 
 
-def find_best_options(pattern):
+def find_best_options(pattern, exclude):
     best_options = []
     best_score = 0
     word_file = open("words.txt", "r")
@@ -24,14 +24,16 @@ def find_best_options(pattern):
     return best_options
 
 
-def score(word, pattern):
+def score(word, pattern, exclude=""):
     if len(word) != len(pattern):
         return -1
     result = 0
     for i in range(len(word)):
         w = word[i]
         p = pattern[i]
-        if p.isupper() and w == p.lower():
+        if any(letter in word for letter in exclude):
+            return 0
+        elif p.isupper() and w == p.lower():
             result += 3
         elif p in word:
             result += 1
