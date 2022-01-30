@@ -1,14 +1,14 @@
 import sys
 
 
-def findAllMatches(word):
-    Matches = []
-    wordFile = open("words.txt", "r")
-    Lines = wordFile.readlines()
-    for line in Lines:
+def find_all_matches(word):
+    ms = []
+    word_file = open("words.txt", "r")
+    lines = word_file.readlines()
+    for line in lines:
         if matches(word, line):
-            Matches.append(line)
-    return Matches
+            ms.append(line)
+    return ms
 
 
 def matches(word, other):
@@ -18,4 +18,4 @@ def matches(word, other):
 if __name__ == "__main__":
     arg = "could" if len(sys.argv) < 2 else sys.argv[1]
     print(arg)
-    findAllMatches(arg)
+    find_all_matches(arg)
