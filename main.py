@@ -11,13 +11,18 @@ def find_all_matches(word):
     return ms
 
 
-def score(word, other):
-    if len(word) != len(other):
+def score(word, pattern):
+    if len(word) != len(pattern):
         return -1
     result = 0
     for i in range(len(word)):
-        if word[i] == other[i]:
+        w = word[i]
+        p = pattern[i]
+        if p.isupper() and w == p.lower():
             result += 3
+        elif p in word:
+            result += 1
+
     return result
 
 
