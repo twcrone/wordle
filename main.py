@@ -12,7 +12,7 @@ def findAllMatches(word):
 
 
 def matches(word, other):
-    return word == other
+    return len(word) * 3 if word == other else 0
 
 
 if __name__ == "__main__":
