@@ -35,7 +35,7 @@ def score(word, pattern, exclude):
             return 0
         elif p.isupper() and w == p.lower():
             result += 3
-        elif p in word:
+        elif w != p.lower() and p in word:
             result += 1
 
     return result
