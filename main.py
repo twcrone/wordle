@@ -1,14 +1,19 @@
 import sys
 
 
-def find_all_matches(word):
-    ms = []
+def find_best_option(pattern):
+    best_word = ""
+    best_score = 0
     word_file = open("words.txt", "r")
     lines = word_file.readlines()
     for line in lines:
-        if score(word, line):
-            ms.append(line)
-    return ms
+        line = line.strip()
+        line_score = score(line, pattern)
+        # print(line + " (" + str(line_score) + ")")
+        if line_score > best_score:
+            best_score = line_score
+            best_word = line
+    return best_word + " (" + str(best_score) + ")"
 
 
 def score(word, pattern):
@@ -27,6 +32,6 @@ def score(word, pattern):
 
 
 if __name__ == "__main__":
-    arg = "could" if len(sys.argv) < 2 else sys.argv[1]
+    arg = "COULD" if len(sys.argv) < 2 else sys.argv[1]
     print(arg)
-    find_all_matches(arg)
+    print(find_best_option(arg))
