@@ -6,13 +6,19 @@ def find_all_matches(word):
     word_file = open("words.txt", "r")
     lines = word_file.readlines()
     for line in lines:
-        if matches(word, line):
+        if score(word, line):
             ms.append(line)
     return ms
 
 
-def matches(word, other):
-    return len(word) * 3 if word == other else 0
+def score(word, other):
+    if len(word) != len(other):
+        return -1
+    result = 0
+    for i in range(len(word)):
+        if word[i] == other[i]:
+            result += 3
+    return result
 
 
 if __name__ == "__main__":
