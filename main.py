@@ -1,3 +1,4 @@
+import random
 import sys
 
 
@@ -6,6 +7,11 @@ def find_best_options(pattern):
     best_score = 0
     word_file = open("words.txt", "r")
     lines = word_file.readlines()
+    if pattern is None:
+        count = len(lines)
+        r = random.randrange(count)
+        return lines[r]
+
     for line in lines:
         line = line.strip()
         line_score = score(line, pattern)
@@ -34,6 +40,6 @@ def score(word, pattern):
 
 
 if __name__ == "__main__":
-    arg = "COULD" if len(sys.argv) < 2 else sys.argv[1]
+    arg = None if len(sys.argv) < 2 else sys.argv[1]
     print(arg)
     print(find_best_options(arg))
