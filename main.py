@@ -14,7 +14,7 @@ def find_best_options(pattern, exclude):
 
     for line in lines:
         line = line.strip()
-        line_score = score(line, pattern)
+        line_score = score(line, pattern, exclude)
         # print(line + " (" + str(line_score) + ")")
         if line_score == best_score:
             best_options.append(line)
@@ -24,7 +24,7 @@ def find_best_options(pattern, exclude):
     return best_options
 
 
-def score(word, pattern, exclude=""):
+def score(word, pattern, exclude):
     if len(word) != len(pattern):
         return -1
     result = 0
@@ -42,6 +42,8 @@ def score(word, pattern, exclude=""):
 
 
 if __name__ == "__main__":
-    arg = None if len(sys.argv) < 2 else sys.argv[1]
-    print(arg)
-    print(find_best_options(arg))
+    pat = None if len(sys.argv) < 2 else sys.argv[1]
+    exc = "" if len(sys.argv) < 3 else sys.argv[2]
+    print(pat)
+    print(exc)
+    print(find_best_options(pat, exc))
