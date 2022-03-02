@@ -36,8 +36,8 @@ def match(word, exact, include, exclude):
             return False
         elif i < len(include) and not include[i] in word:
             return False
-        # elif i < len(exclude) and not include[i] in word:
-        #     return False
+        elif i < len(exclude) and exclude[i] in word:
+            return False
 
     return True
 
