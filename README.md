@@ -9,4 +9,4 @@ Python script to help solve Wordle and help me get comfortable with Python
 
 `python main.py M_s__ abc` As above but only including words that also have `a`, `b` and `c` in them
 
-`python main.py M_s__ abc xyz` As above but only including words that also do NOT include `x`, `y` and `z` in them
+`python main.py M_s__ abc xyz` As above but only including words that also do NOT include `x`, `y` and `z`
