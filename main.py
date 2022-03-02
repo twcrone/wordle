@@ -24,6 +24,12 @@ def find_best_options(pattern, exclude):
     return best_options
 
 
+def match(word, exact):
+    if word.lower() == exact.lower():
+        return True
+    return False
+
+
 def score(word, pattern, exclude):
     if len(word) != len(pattern):
         return -1

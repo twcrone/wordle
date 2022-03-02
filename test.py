@@ -1,6 +1,6 @@
 import unittest
 
-from main import score
+from main import score, match
 
 
 class TestWordle(unittest.TestCase):
@@ -28,6 +28,12 @@ class TestWordle(unittest.TestCase):
 
     def test_lowercase_match_in_uppercase_location_is_zero(self):
         self.assertEqual(0, score("and", "a__", ""))
+
+    def test_match_exact(self):
+        self.assertTrue(match("relic", "RELIC"))
+
+    def test_match_partial(self):
+        self.assertTrue(match("relic", "R_L_C"))
 
 
 if __name__ == '__main__':
