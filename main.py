@@ -34,7 +34,7 @@ def match(word, exact, include):
     for i in range(len(word)):
         if not match_letter(word[i], exact[i]):
             return False
-        elif not word[i] in include:
+        elif i < len(include) and not include[i] in word:
             return False
     return True
 
