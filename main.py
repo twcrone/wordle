@@ -24,10 +24,17 @@ def find_best_options(pattern, exclude):
     return best_options
 
 
+def match_letter(a, b):
+    return a.lower() == b.lower() or b == "_"
+
+
 def match(word, exact):
     if word.lower() == exact.lower():
         return True
-    return False
+    for i in range(len(word)):
+        if not match_letter(word[i], exact[i]):
+            return False
+    return True
 
 
 def score(word, pattern, exclude):
