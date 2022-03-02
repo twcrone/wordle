@@ -28,7 +28,7 @@ def match_letter(a, b):
     return a.lower() == b.lower() or b == "_"
 
 
-def match(word, exact, include):
+def match(word, exact, include, exclude):
     if word.lower() == exact.lower():
         return True
     for i in range(len(word)):
@@ -36,6 +36,9 @@ def match(word, exact, include):
             return False
         elif i < len(include) and not include[i] in word:
             return False
+        # elif i < len(exclude) and not include[i] in word:
+        #     return False
+
     return True
 
 

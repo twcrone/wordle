@@ -30,16 +30,16 @@ class TestWordle(unittest.TestCase):
         self.assertEqual(0, score("and", "a__", ""))
 
     def test_match_exact(self):
-        self.assertTrue(match("relic", "RELIC", ""))
+        self.assertTrue(match("relic", "RELIC", "", ""))
 
     def test_match_partial(self):
-        self.assertTrue(match("relic", "R_L_C", ""))
+        self.assertTrue(match("relic", "R_L_C", "", ""))
 
     def test_match_includes(self):
-        self.assertTrue(match("relic", "_____", "rlc"))
+        self.assertTrue(match("relic", "_____", "rlc", ""))
 
     def test_dont_match_includes_missing(self):
-        self.assertFalse(match("relic", "_____", "rulc"))
+        self.assertFalse(match("relic", "_____", "rulc", ""))
 
 
 if __name__ == '__main__':
