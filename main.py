@@ -28,11 +28,13 @@ def match_letter(a, b):
     return a.lower() == b.lower() or b == "_"
 
 
-def match(word, exact):
+def match(word, exact, include):
     if word.lower() == exact.lower():
         return True
     for i in range(len(word)):
         if not match_letter(word[i], exact[i]):
+            return False
+        elif not word[i] in include:
             return False
     return True
 
