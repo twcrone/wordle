@@ -20,6 +20,9 @@ class TestWordle(unittest.TestCase):
     def test_no_match_with_excludes(self):
         self.assertFalse(match("relic", "R_L_C", "i", "e"))
 
+    def test_match_with_ignored_include(self):
+        self.assertFalse(match("relic", "R_L_C", "_", "e"))
+
 
 if __name__ == '__main__':
     unittest.main()
