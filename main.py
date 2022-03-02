@@ -28,9 +28,13 @@ def match(word, exact, include, exclude):
     for i in range(len(word)):
         if not match_letter(word[i], exact[i]):
             return False
-        elif i < len(include) and not include[i] == "_" and not include[i] in word:
+
+    for i in range(len(include)):
+        if not include[i] == "_" and not include[i] in word:
             return False
-        elif i < len(exclude) and exclude[i] in word:
+
+    for i in range(len(exclude)):
+        if exclude[i] in word:
             return False
 
     return True
