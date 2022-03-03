@@ -2,7 +2,7 @@ import random
 import sys
 
 
-def find_best_options(patterns):
+def guess(patterns):
     best_options = []
     word_file = open("words.txt", "r")
     lines = word_file.readlines()
@@ -15,7 +15,8 @@ def find_best_options(patterns):
         line = line.strip()
         if is_match_for(line, patterns):
             best_options.append(line)
-    return best_options
+    r = random.randrange(len(best_options))
+    return best_options[r]
 
 
 def is_match_for(word, patterns):
@@ -43,6 +44,7 @@ def matches(word, pattern):
 def included_but_not_at_index(word, letter, index):
     return letter in word and word[index] != letter
 
+
 def excluded(word, excludes):
     for i in range(len(excludes)):
         if excludes[i] in word:
@@ -52,4 +54,4 @@ def excluded(word, excludes):
 
 
 if __name__ == "__main__":
-    print(find_best_options(sys.argv[1:]))
+    print(guess(sys.argv[1:]))
