@@ -2,24 +2,30 @@ import random
 import sys
 
 
-def find_best_options(pattern, include, exclude):
+def find_best_options(patterns):
     best_options = []
     word_file = open("words.txt", "r")
     lines = word_file.readlines()
-    if pattern is None:
+    if len(patterns) == 0:
         count = len(lines)
         r = random.randrange(count)
         return lines[r]
 
     for line in lines:
         line = line.strip()
-        if match(line, pattern, include, exclude):
+        if is_match_for(line, patterns):
             best_options.append(line)
     return best_options
 
 
-def match_letter(a, b):
-    return a.lower() == b.lower() or b == "_"
+def is_match_for(word, patterns):
+    for pattern in patterns:
+        if pattern.startswith("-"):
+            if not excluded(word, pattern[1:]):
+                return False
+        elif not matches(word, pattern):
+            return False
+    return True
 
 
 def matches(word, pattern):
@@ -42,29 +48,5 @@ def excluded(word, excludes):
     return True
 
 
-def match(word, exact, include, exclude):
-    if word.lower() == exact.lower():
-        return True
-    for i in range(len(word)):
-        if not match_letter(word[i], exact[i]):
-            return False
-
-    for i in range(len(include)):
-        if not include[i] == "_" and not include[i] in word:
-            return False
-
-    for i in range(len(exclude)):
-        if exclude[i] in word:
-            return False
-
-    return True
-
-
 if __name__ == "__main__":
-    pat = None if len(sys.argv) < 2 else sys.argv[1]
-    inc = "" if len(sys.argv) < 3 else sys.argv[2]
-    exc = "" if len(sys.argv) < 4 else sys.argv[3]
-    print(pat)
-    print(inc)
-    print(exc)
-    print(find_best_options(pat, inc, exc))
+    print(find_best_options(sys.argv[1:]))
