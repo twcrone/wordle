@@ -1,6 +1,6 @@
 import unittest
 
-from main import match, matches
+from main import excluded, match, matches
 
 
 class TestWordle(unittest.TestCase):
@@ -16,6 +16,14 @@ class TestWordle(unittest.TestCase):
         self.assertFalse(matches("relic", "RAL_C"))
         self.assertFalse(matches("relic", "_a_lc"))
         self.assertFalse(matches("relic", "CILER"))
+
+    def test_excluded(self):
+        self.assertTrue(excluded("relic", "abd"))
+        self.assertTrue(excluded("relic", "xyz"))
+
+    def test_not_excluded(self):
+        self.assertFalse(excluded("relic", "e"))
+        self.assertFalse(excluded("relic", "xe"))
 
     def test_dont_match_includes_missing(self):
         self.assertFalse(match("relic", "_____", "rulc", ""))

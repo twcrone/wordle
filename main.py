@@ -34,6 +34,14 @@ def matches(word, pattern):
     return True
 
 
+def excluded(word, excludes):
+    for i in range(len(excludes)):
+        if excludes[i] in word:
+            return False
+
+    return True
+
+
 def match(word, exact, include, exclude):
     if word.lower() == exact.lower():
         return True
