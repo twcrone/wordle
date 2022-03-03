@@ -35,10 +35,13 @@ def matches(word, pattern):
             continue
         if letter.isupper() and not letter.lower() == word[i].lower():
             return False
-        elif letter.islower() and not letter in word:
+        elif letter.islower() and not included_but_not_at_index(word, letter, i):
             return False
     return True
 
+
+def included_but_not_at_index(word, letter, index):
+    return letter in word and word[index] != letter
 
 def excluded(word, excludes):
     for i in range(len(excludes)):

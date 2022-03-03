@@ -8,7 +8,7 @@ class TestWordle(unittest.TestCase):
     def test_matches(self):
         self.assertTrue(matches("relic", "RELIC"))
         self.assertTrue(matches("relic", "R_L_C"))
-        self.assertTrue(matches("relic", "_r_lc"))
+        self.assertTrue(matches("relic", "_rcl_"))
         self.assertTrue(matches("relic", "_____"))
 
     def test_no_matches(self):
