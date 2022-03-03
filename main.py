@@ -22,6 +22,18 @@ def match_letter(a, b):
     return a.lower() == b.lower() or b == "_"
 
 
+def matches(word, pattern):
+    for i in range(len(pattern)):
+        letter = pattern[i]
+        if letter == "_":
+            continue
+        if letter.isupper() and not letter.lower() == word[i].lower():
+            return False
+        elif letter.islower() and not letter in word:
+            return False
+    return True
+
+
 def match(word, exact, include, exclude):
     if word.lower() == exact.lower():
         return True

@@ -1,15 +1,21 @@
 import unittest
 
-from main import match
+from main import match, matches
 
 
 class TestWordle(unittest.TestCase):
 
-    def test_match_exact(self):
-        self.assertTrue(match("relic", "RELIC", "", ""))
+    def test_matches(self):
+        self.assertTrue(matches("relic", "RELIC"))
+        self.assertTrue(matches("relic", "R_L_C"))
+        self.assertTrue(matches("relic", "_r_lc"))
+        self.assertTrue(matches("relic", "_____"))
 
-    def test_match_partial(self):
-        self.assertTrue(match("relic", "R_L_C", "", ""))
+    def test_no_matches(self):
+        self.assertFalse(matches("relic", "ABCDE"))
+        self.assertFalse(matches("relic", "RAL_C"))
+        self.assertFalse(matches("relic", "_a_lc"))
+        self.assertFalse(matches("relic", "CILER"))
 
     def test_dont_match_includes_missing(self):
         self.assertFalse(match("relic", "_____", "rulc", ""))
