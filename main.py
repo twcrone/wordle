@@ -5,7 +5,10 @@ import sys
 def guess(patterns):
     best_options = []
     word_file = open("words.txt", "r")
+    past_file = open("past.txt", "r")
     lines = word_file.readlines()
+    past_words = past_file.readlines()
+    lines = remove_strings_from_list(lines, past_words)
     if len(patterns) == 0:
         count = len(lines)
         r = random.randrange(count)
@@ -18,6 +21,10 @@ def guess(patterns):
     r = random.randrange(len(best_options))
     return best_options[r]
 
+def remove_strings_from_list(list1, list2):
+    """Removes strings from list1 that are present in list2."""
+    result = [x for x in list1 if x not in list2]
+    return result
 
 def is_match_for(word, patterns):
     for pattern in patterns:
