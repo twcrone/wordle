@@ -18,6 +18,8 @@ def guess(patterns):
         line = line.strip()
         if is_match_for(line, patterns):
             best_options.append(line)
+    if len(best_options) == 0:
+        return "?????"
     r = random.randrange(len(best_options))
     return best_options[r]
 

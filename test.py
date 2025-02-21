@@ -1,6 +1,6 @@
 import unittest
 
-from main import excluded, matches
+from main import excluded, matches, guess
 
 
 class TestWordle(unittest.TestCase):
@@ -21,6 +21,8 @@ class TestWordle(unittest.TestCase):
         self.assertTrue(excluded("relic", "abd"))
         self.assertTrue(excluded("relic", "xyz"))
 
+    def test(self):
+        self.assertEqual("?????", guess("_LO_E -brawnstkep"))
 
 if __name__ == '__main__':
     unittest.main()
